@@ -4,6 +4,8 @@ import retrofit2.Retrofit
 import retrofit2.Retrofit.*
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.Call
+
 
 private const val BASE_URL =
     "https://kareemy.github.io/MovieBuffs/movies.json"
