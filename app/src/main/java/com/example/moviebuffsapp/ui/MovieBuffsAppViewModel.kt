@@ -1,18 +1,43 @@
 package com.example.moviebuffsapp.ui
 
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-
-class MovieBuffsAppViewModel {
-    var moviebuffsappUiState: String by mutableStateOf("")
-        private set
+import com.example.moviebuffsapp.ui.theme.Network.MovieBuffsAppPhoto
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 
-    init {
-        movieBuffsAppPhotos()
-        moviebuffsappUiState = "set the MovieBuffsApp API status response here!"
+sealed interface MovieBuffsAppUiState {
+    data class Success(val photos: String) : MovieBuffsAppUiState
+    data object Error : MovieBuffsAppUiState
+    data object Loading : MovieBuffsAppUiState
+}
+
+fun getMovieBuffsAppPhotos() {
+    val viewModelScope
+    viewModelScope.launch {
+        val listResult = MovieBuffsAppApi.retrofitService.getPhotos()
+        moviebuffsappUiState = (listResult)
+
+    }
+
+    viewModelScope.launch {
+        moviebuffsappUiState = try {
+            val listResult = moviebuffsappApi.retrofitService.getPhotos()
+            MovieBuffsAppUiState.Success(listResult)
+        } catch (e: IOException) {
+            MovieBuffsAppUiState.Error
+        }
+    }
+
+    class MovieBuffsAppViewModel {
+        var moviebuffsappUiState: String by mutableStateOf("")
+            private set
+
+        init {
+            MovieBuffsAppPhoto()
+            moviebuffsappUiState = "set the MovieBuffsApp API status response here!"
+        }
     }
 }

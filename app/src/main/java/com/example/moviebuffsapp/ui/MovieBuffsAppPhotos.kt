@@ -5,7 +5,6 @@ import com.example.marsphotos.R
 
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -21,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.moviebuffsappphotosapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
