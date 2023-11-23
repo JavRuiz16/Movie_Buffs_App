@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.moviebuffsapp.ui.MovieBuffsAppPhotosApp
 import com.example.moviebuffsapp.ui.theme.MovieBuffsAppTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +20,15 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MovieBuffsAppPhotosApp()
+                    MovieBuffsAppPhotos()
                 }
             }
         }
     }
 }
+
+class MovieBuffsAppPhotos {
+
+}
+
 

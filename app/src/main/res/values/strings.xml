@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Movie Buffs App</string>
+    <string name="loading" />
+    <string name="loading_failed" />
+    <string name="moviephotosapp_photo" />
 </resources>

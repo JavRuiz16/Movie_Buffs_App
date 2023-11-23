@@ -1,9 +1,6 @@
-package com.example.moviebuffsapp.ui
-
-import androidx.lifecycle.ViewModel
-import com.example.marsphotos.R
-
 @file:OptIn(ExperimentalMaterial3Api::class)
+
+package com.example.moviebuffsapp.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -20,10 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.marsphotos.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun MovieBuffsAppPhotosApp() {
+fun MovieBuffAppPhotosApp() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -34,14 +32,15 @@ fun MovieBuffsAppPhotosApp() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            val movieBuffsAppViewModel: ViewModel = viewModel()
+            val marsViewModel: MovieBuffsAppViewModel = viewModel()
             HomeScreen(
-                moviebuffsappUiState = movieBuffsAppViewModel.moviebuffsappUiState)
+                marsUiState = marsViewModel.moviebuffsappUiState,
+                retryAction = marsViewModel::getMovieBuffsAppPhotos
+            )
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieBuffsAppTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(

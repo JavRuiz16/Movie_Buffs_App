@@ -6,7 +6,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.http.GET
 
-
 private const val BASE_URL =
     "https://kareemy.github.io"
 
@@ -14,13 +13,14 @@ private val retrofit = Retrofit.Builder()
     .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
     .baseUrl(BASE_URL)
     .build()
-interface MovieBuffsAppAprService {
-    @GET("MovieBuffsApp/photos.json")
-    suspend fun getPhotos(): List<MovieBuffsAppPhoto>
-}
 
 object MarsApi {
-    val retrofitService : MovieBuffsAppAprService by lazy {
-        retrofit.create(MovieBuffsAppAprService::class.java)
+    val retrofitService : MovieBuffsAppApiService by lazy {
+        retrofit.create(MovieBuffsAppApiService::class.java)
     }
+}
+
+interface MovieBuffsAppApiService {
+    @GET("MovieBuffsApp/photos.json")
+    suspend fun getPhotos(): List<MovieBuffsAppPhoto>
 }
