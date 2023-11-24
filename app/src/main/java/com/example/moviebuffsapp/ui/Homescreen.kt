@@ -26,7 +26,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marsphotos.R
-import com.example.moviebuffsapp.MovieBuffsAppPhotos
 import com.example.moviebuffsapp.ui.theme.Network.MovieBuffsAppPhoto
 
 
@@ -69,7 +68,7 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun PhotosGridScreen(photos: List<MovieBuffsAppPhotos>, modifier: Modifier = Modifier) {
+fun PhotosGridScreen(photos: List<Unit>, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
         modifier = modifier.fillMaxWidth(),
@@ -120,7 +119,7 @@ fun AsyncImage(model: Any, error: Painter, placeholder: Painter, contentDescript
 @Composable
 fun PhotosGridScreenPreview() {
     MovieBuffsAppPhotosTheme {
-        val mockData = List(10) { MoviesBuffAppPhoto("$it", "") }
+        val mockData = List(10) { MovieBuffsAppPhoto("$it", "") }
         PhotosGridScreen(mockData)
     }
 }
