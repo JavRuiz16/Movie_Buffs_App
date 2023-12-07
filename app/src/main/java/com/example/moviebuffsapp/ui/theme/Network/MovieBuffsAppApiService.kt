@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 
 private const val BASE_URL =
-    "https://kareemy.github.io"
+    "https://kareemy.github.io/MovieBuffs/movies.json"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))

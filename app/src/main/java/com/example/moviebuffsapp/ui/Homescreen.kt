@@ -5,15 +5,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,20 +26,31 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marsphotos.R
+import com.example.moviebuffsapp.model.MovieBuffsApp
+import com.example.moviebuffsapp.ui.theme.MovieBuffsAppTheme
 import com.example.moviebuffsapp.ui.theme.Network.MovieBuffsAppPhoto
 
 
 @Composable
 fun HomeScreen(
-    marsUiState: MovieBuffsAppUiState, retryAction: () -> Unit, modifier: Modifier = Modifier
+    movieBuffsAppUiState: MovieBuffsAppUiState,
+    retryAction: () -> Unit,
+    contentPadding: PaddingValues,
+    modifier: Modifier = Modifier
 ) {
-    when (marsUiState) {
-        is MovieBuffsAppUiState.Loading -> LoadingScreen(modifier = modifier)
-        is MovieBuffsAppUiState.Success -> PhotosGridScreen(moviebuffsappUiState.photos, modifier)
-        is MovieBuffsAppUiState.Error -> ErrorScreen(retryAction, modifier = modifier)
+    when (movieBuffsAppUiState) {
+        is MovieBuffsAppUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        is MovieBuffsAppUiState.Success ->
+            MovieBuffsAppList(
+                movieBuffsApp = movieBuffsAppUiState.moviebuffsapp,
+                contentPadding = contentPadding
+            )
+        is MovieBuffsAppUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
     }
 }
 
@@ -68,6 +82,64 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun MovieBuffsAppList(
+    dinosaurs: List<MovieBuffsApp>,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
+) {
+    LazyColumn(
+        contentPadding = contentPadding,
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(MovieBuffsapp) { moviebuffsapp ->
+            MovieBuffsAppCard(
+                moviebuffsapp = moviebuffsapp,
+                modifier = modifier
+                    .padding(4.dp)
+                    .fillMaxWidth()
+            )
+        }
+    }
+}
+
+@Composable
+fun MovieBUffsAppCard(moviebuffsapp: movieBuffsApp, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier,
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = stringResource(R.string.moviebuffsapp_title, moviebuffsapp.name, moviebuffsapp.length),
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Start,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            AsyncImage(
+                model = ImageRequest.Builder(context = LocalContext.current)
+                    .data(moviebuffsapp.imgSrc)
+                    .crossfade(true)
+                    .build(),
+                error = painterResource(R.drawable.ic_broken_image),
+                placeholder = painterResource(R.drawable.loading_img),
+                contentDescription = moviebuffsapp.name,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Text(
+                text = moviebuffsapp.description,
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+    }
+}
+
+@Composable
 fun PhotosGridScreen(photos: List<Unit>, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
@@ -87,7 +159,7 @@ fun PhotosGridScreen(photos: List<Unit>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun MovieBuffsAppPhotoCard(photo: MovieBuffsAppPhoto, modifier: Modifier = Modifier) {
+fun MovieBuffsAppPhotoCard(photo: Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
