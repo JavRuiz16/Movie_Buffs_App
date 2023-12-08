@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
             MovieBuffsAppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     MovieBuffsApp()
                 }
@@ -47,12 +47,12 @@ fun MovieBuffsApp() {
     MovieBuffsAppTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
+            color = MaterialTheme.colorScheme.background
         ) {
             @Composable
             fun MovieBuffsAppPhotos(movieBuffs: List<MovieBuffsApp>, onItemClick: (MovieBuffsApp) -> Unit) {
                 LazyVerticalGrid(
-                    cells = GridCells.Fixed(3), // Adjust the number of columns as needed
+                    cells = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(4.dp)
                 ) {
@@ -70,13 +70,11 @@ fun MovieBuffsApp() {
                         .clickable { onItemClick(movieBuff) },
                     elevation = 4.dp
                 ) {
-                    // Display movie buffs app photo here (e.g., using Image)
-                    // Customize the layout based on your movieBuff data
                     Image(
-                        painter = painterResource(id = movieBuff.imageResourceId), // Replace with your image resource
-                        contentDescription = null, // Provide a meaningful description
-                        modifier = Modifier.fillMaxWidth().height(120.dp), // Adjust dimensions as needed
-                        contentScale = ContentScale.Crop // Adjust the content scale type
+                        painter = painterResource(id = movieBuff.imageResourceId),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxWidth().height(120.dp),
+                        contentScale = ContentScale.Crop
                     )
                 }
             }

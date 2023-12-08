@@ -20,8 +20,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.marsphotos.R
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MovieBuffsAppApp() {
+fun MovieBuffsAppAppPhoto() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),

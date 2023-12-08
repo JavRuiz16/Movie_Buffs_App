@@ -13,6 +13,7 @@ import java.io.IOException
 
 
 sealed interface MovieBuffsAppUiState {
+    abstract val moviebuffsappList: List<MovieBuffsApp>
     abstract val isShowingListPage: Boolean
 
     data class Success(val photos: String) : MovieBuffsAppUiState {
@@ -28,6 +29,12 @@ sealed interface MovieBuffsAppUiState {
     object Loading : MovieBuffsAppUiState {
         override val isShowingListPage: Boolean
             get() = TODO("Not yet implemented")
+    }
+
+    companion object {
+        fun Success(isShowingListPage: Boolean, moviebuffsappList: List<MovieBuffsApp>): MovieBuffsAppUiState.Success {
+
+        }
     }
 }
 
