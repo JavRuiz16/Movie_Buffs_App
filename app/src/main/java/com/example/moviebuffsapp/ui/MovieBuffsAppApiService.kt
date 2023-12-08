@@ -17,16 +17,22 @@ sealed interface MovieBuffsAppUiState {
     abstract val isShowingListPage: Boolean
 
     data class Success(val photos: String) : MovieBuffsAppUiState {
+        override val moviebuffsappList: List<MovieBuffsApp>
+            get() = TODO("Not yet implemented")
         override val isShowingListPage: Boolean
             get() = TODO("Not yet implemented")
     }
 
     object Error : MovieBuffsAppUiState {
+        override val moviebuffsappList: List<MovieBuffsApp>
+            get() = TODO("Not yet implemented")
         override val isShowingListPage: Boolean
             get() = TODO("Not yet implemented")
     }
 
     object Loading : MovieBuffsAppUiState {
+        override val moviebuffsappList: List<MovieBuffsApp>
+            get() = TODO("Not yet implemented")
         override val isShowingListPage: Boolean
             get() = TODO("Not yet implemented")
     }
