@@ -36,7 +36,7 @@ fun MovieBuffsAppAppPhoto() {
             val marsViewModel: MovieBuffsAppViewModel = viewModel()
             HomeScreen(
                 moviebuffsappUiState = marsViewModel.moviebuffsappUiState,
-                retryAction = marsViewModel::getMovieBuffsAppPhotos
+                retryAction = moviebuffsappViewModel::getMovieBuffsAppPhotos
             )
         }
     }
