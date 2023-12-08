@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marsphotos.R
 import com.example.moviebuffsapp.ui.theme.MovieBuffsAppTheme
+import com.example.moviebuffsapp.ui.theme.Network.MovieBuffsApp
 
 
 @Composable
@@ -155,7 +156,17 @@ fun PhotosGridScreen(photos: List<com.example.moviebuffsapp.ui.theme.Network.Mov
         }
     }
 }
-
+@Composable
+fun MovieBuffsAppList(moviebuffsappList: List<MovieBuffsApp>, modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier) {
+        items(moviebuffsappList) {moviebuffsapp ->
+            MovieBuffsAppCard(
+                MovieBuffsApp = moviebuffsapp,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
+    }
+}
 @Composable
 fun MovieBuffsAppCard(photo: Unit, modifier: Modifier = Modifier) {
     Card(
