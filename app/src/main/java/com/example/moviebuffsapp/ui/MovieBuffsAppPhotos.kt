@@ -17,11 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.marsphotos.R
+import com.example.moviebuffsapp.photos.R
 
 
 @Composable
-fun MovieBuffAppPhotosApp() {
+fun MovieBuffApp() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -34,7 +34,7 @@ fun MovieBuffAppPhotosApp() {
         ) {
             val marsViewModel: MovieBuffsAppViewModel = viewModel()
             HomeScreen(
-                marsUiState = marsViewModel.moviebuffsappUiState,
+                moviebuffsappUiState = marsViewModel.moviebuffsappUiState,
                 retryAction = marsViewModel::getMovieBuffsAppPhotos
             )
         }
