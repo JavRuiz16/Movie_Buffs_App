@@ -31,9 +31,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marsphotos.R
+import com.example.moviebuffsapp.MovieBuffsAppCard
 import com.example.moviebuffsapp.model.MovieBuffsApp
-import com.example.moviebuffsapp.ui.theme.MovieBuffsAppTheme
-import com.example.moviebuffsapp.ui.theme.Network.MovieBuffsAppPhoto
 
 
 @Composable
@@ -83,7 +82,7 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 
 @Composable
 fun MovieBuffsAppList(
-    dinosaurs: List<MovieBuffsApp>,
+    dinosaurs: List<com.example.moviebuffsapp.model.MovieBuffsApp>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -92,7 +91,7 @@ fun MovieBuffsAppList(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        items(MovieBuffsapp) { moviebuffsapp ->
+        items(com.example.moviebuffsapp.model.MovieBuffsApp) { moviebuffsapp ->
             MovieBuffsAppCard(
                 moviebuffsapp = moviebuffsapp,
                 modifier = modifier
@@ -191,7 +190,7 @@ fun AsyncImage(model: Any, error: Painter, placeholder: Painter, contentDescript
 @Composable
 fun PhotosGridScreenPreview() {
     MovieBuffsAppPhotosTheme {
-        val mockData = List(10) { MovieBuffsAppPhoto("$it", "") }
+        val mockData = List(10) { com.example.moviebuffsapp.ui.theme.Network.MovieBuffsApp("$it", "") }
         PhotosGridScreen(mockData)
     }
 }

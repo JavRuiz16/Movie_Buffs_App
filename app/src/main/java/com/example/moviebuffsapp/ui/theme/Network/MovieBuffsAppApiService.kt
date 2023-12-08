@@ -1,5 +1,6 @@
 package com.example.moviebuffsapp.ui.theme.Network
 
+import com.example.moviebuffsapp.model.MovieBuffsApp
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -14,7 +15,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-object MarsApi {
+object MovieBuffsAppApi {
     val retrofitService : MovieBuffsAppApiService by lazy {
         retrofit.create(MovieBuffsAppApiService::class.java)
     }
@@ -22,5 +23,5 @@ object MarsApi {
 
 interface MovieBuffsAppApiService {
     @GET("MovieBuffsApp/photos.json")
-    suspend fun getPhotos(): List<MovieBuffsAppPhoto>
+    suspend fun getMovieBuffsApp(): List<MovieBuffsApp>
 }

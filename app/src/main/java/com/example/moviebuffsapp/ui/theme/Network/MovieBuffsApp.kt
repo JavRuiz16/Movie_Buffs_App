@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class MovieBuffsAppPhoto(
+data class MovieBuffsApp(
     val id: String,
     @SerialName(value = "img_src")
     val imgSrc: String
