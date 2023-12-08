@@ -31,8 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marsphotos.R
-import com.example.moviebuffsapp.MovieBuffsAppCard
-import com.example.moviebuffsapp.model.MovieBuffsApp
+import com.example.moviebuffsapp.ui.theme.MovieBuffsAppTheme
 
 
 @Composable
@@ -103,7 +102,7 @@ fun MovieBuffsAppList(
 }
 
 @Composable
-fun MovieBUffsAppCard(moviebuffsapp: movieBuffsApp, modifier: Modifier = Modifier) {
+fun MovieBuffsAppPCard(moviebuffsapp: movieBuffsApp, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier,
     ) {
@@ -139,14 +138,14 @@ fun MovieBUffsAppCard(moviebuffsapp: movieBuffsApp, modifier: Modifier = Modifie
 }
 
 @Composable
-fun PhotosGridScreen(photos: List<Unit>, modifier: Modifier = Modifier) {
+fun PhotosGridScreen(photos: List<com.example.moviebuffsapp.ui.theme.Network.MovieBuffsApp>, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
         modifier = modifier.fillMaxWidth(),
         contentPadding = PaddingValues(4.dp)
     ) {
         items(items = photos, key = { photo -> photo.id }) { photo ->
-            MovieBuffsAppPhotoCard(
+            MovieBuffsAppPCard(
                 photo,
                 modifier = modifier
                     .padding(4.dp)
@@ -158,7 +157,7 @@ fun PhotosGridScreen(photos: List<Unit>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun MovieBuffsAppPhotoCard(photo: Unit, modifier: Modifier = Modifier) {
+fun MovieBuffsAppCard(photo: Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
@@ -189,8 +188,16 @@ fun AsyncImage(model: Any, error: Painter, placeholder: Painter, contentDescript
 @Preview(showBackground = true)
 @Composable
 fun PhotosGridScreenPreview() {
-    MovieBuffsAppPhotosTheme {
+    MovieBuffsAppTheme {
         val mockData = List(10) { com.example.moviebuffsapp.ui.theme.Network.MovieBuffsApp("$it", "") }
         PhotosGridScreen(mockData)
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun MovieBuffsAppCard() {
+    MovieBuffsAppTheme {
+        val mockData =
+            List(10) { com.example.moviebuffsapp.ui.theme.Network.MovieBuffsApp("$it", "") }
     }
 }
