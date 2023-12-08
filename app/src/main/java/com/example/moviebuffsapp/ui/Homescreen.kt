@@ -70,6 +70,7 @@ fun HomeScreen(
 @Composable
 fun MovieBuffsAppList(
     moviebuffsappList: List<MovieBuffsApp>,
+    OnClick:(MovieBuffsApp) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -81,7 +82,7 @@ fun MovieBuffsAppList(
         items(moviebuffsappList) { moviebuffsapp ->
             MovieBuffsAppCard(
                 moviebuffsapp = moviebuffsapp,
-                modifier = modifier
+                modifier = modifier,
                     .padding(4.dp)
                     .fillMaxWidth()
             )

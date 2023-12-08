@@ -18,8 +18,6 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.marsphotos.R
-import com.example.moviebuffsapp.photos.R
-import com.example.moviebuffsapp.ui.theme.Network.MovieBuffsApp
 
 
 @Composable

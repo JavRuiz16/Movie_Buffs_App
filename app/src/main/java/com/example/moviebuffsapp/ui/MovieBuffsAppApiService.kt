@@ -13,9 +13,22 @@ import java.io.IOException
 
 
 sealed interface MovieBuffsAppUiState {
-    data class Success(val photos: String) : MovieBuffsAppUiState
-    object Error : MovieBuffsAppUiState
-    object Loading : MovieBuffsAppUiState
+    abstract val isShowingListPage: Boolean
+
+    data class Success(val photos: String) : MovieBuffsAppUiState {
+        override val isShowingListPage: Boolean
+            get() = TODO("Not yet implemented")
+    }
+
+    object Error : MovieBuffsAppUiState {
+        override val isShowingListPage: Boolean
+            get() = TODO("Not yet implemented")
+    }
+
+    object Loading : MovieBuffsAppUiState {
+        override val isShowingListPage: Boolean
+            get() = TODO("Not yet implemented")
+    }
 }
 
 interface MovieBuffsAppApiService {
@@ -26,10 +39,10 @@ class MovieBuffsAppViewModel : ViewModel() {
     var moviebuffsappUiState: MovieBuffsAppUiState by mutableStateOf(MovieBuffsAppUiState.Loading)
         private set
     init {
-        getMovieBuffsAppPhotos()
+        getMovieBuffsApp()
     }
 
-    fun getMovieBuffsAppPhotos() {
+    private fun getMovieBuffsApp() {
         viewModelScope.launch {
             moviebuffsappUiState = try {
                 MovieBuffsAppUiState.Success(MovieBuffsAppApiService.retrofitService.getPhotos())
